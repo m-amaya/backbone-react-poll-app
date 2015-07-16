@@ -24,7 +24,7 @@ Postgres database, configuring and running express app
 If interested, you can set up the app to connect to your own
 Heroku Postgres database by doing the following:
 
-1. Set up project to deploy on Heroku.
+##### 1. Set up project to deploy on Heroku.
 ```
 $ heroku login
 $ heroku create
