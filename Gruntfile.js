@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         options: {
           debug: true
         },
-        src: 'public/src/js/main.jsx',
+        src: ['public/src/js/*.js', 'public/src/views/*.jsx'],
         dest: 'public/build/bundle.js'
       },
       production: {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         }
       },
       browserify: {
-        files: 'public/src/js/*.jsx',
+        files: 'public/src/views/*.jsx',
         tasks: ['browserify:dev']
       }
     }
