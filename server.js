@@ -5,8 +5,8 @@ var bodyParser           = require('body-parser');
 var methodOverride       = require('method-override');
 
 // configuration ======================================
-var db = require('app/db/config');
-var port = process.env.PORT || 8080;
+var db = require('./app/db/config');
+var port = process.env.PORT || 8000;
 var client = db.client();
 client.connect(function(err, client) {
   if(err) { "Oops! Could not connect to db: " + err }
@@ -20,7 +20,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public'));
 
 // routes =============================================
-require('./app/routes')(app);
+require('./app/routes')(app, client);
 
 // start app ==========================================
 app.listen(port);
