@@ -29,20 +29,21 @@ Heroku Postgres database by doing the following:
 $ heroku login
 $ heroku create
 ```
-2. Create a new database to add to your Heroku app.
+
+##### 2. Create a new database to add to your Heroku app.
 ```
 $ heroku addons:create heroku-postgresql-hobby-dev
 ```
 > You may need to wait 5-10 minutes while the database is setting
 up. You can check your database's availability by going to
 [https://postgres.heroku.com/databases](https://postgres.heroku.com/databases).
-3. You can use the following command to view general information
-about your database:
+
+##### 3. You can use the following command to view general information about your database:
 ```
 $ heroku pg:info
 ```
-4. If you have `psql` installed on your local computer, you can
-use it to connect to your database with the following:
+
+##### 4. If you have `psql` installed on your local computer, you can use it to connect to your database with the following:
 ```
 $ heroku pg:psql
 ---> Connecting to DATABASE_URL
@@ -50,10 +51,10 @@ psql (9.4.4)
 SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
 Type "help" for help.
 
-<app-name>::DATABASE=>
+(app-name)::DATABASE=>
 ```
-5. Once connected remotely, execute the following command to create
-a table named `polls`, which will be used in the app.
+
+##### 5. Once connected remotely, execute the following command to create a table named `polls`, which will be used in the app.
 ```
 CREATE TABLE polls(uuid char(36) UNIQUE, question varchar(100), opt1 varchar(50), opt2 varchar(50), opt3 varchar(50), opt1votes int DEFAULT 0 CHECK (opt1votes>=0), opt2votes int DEFAULT 0 CHECK (opt2votes>=0), opt3votes int DEFAULT 0 CHECK (opt3votes >= 0));
 ```
@@ -62,7 +63,8 @@ Make sure table created correctly:
 SELECT * FROM polls;
 ```
 Exit psql: `CTRL+D`.
-6. Create a `app/db/config.js` file with the following contents:
+
+##### 6. Create a `app/db/config.js` file with the following contents:
 ```javascript
 var pg = require('pg');
 
