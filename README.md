@@ -16,10 +16,7 @@ Postgres database, configuring and running express app
   front-end routes
   * `db/`
     * `config.js` - holds configuration for connecting to a
-    database hosted on Heroku Postgres.
-    
-    > Not included in public git repo for security purposes.
-    
+    database hosted on Heroku Postgres. *Not included in public git repo for security purposes.*
     * `db.js` - holds methods for all database operations.
 
 ###`config.js`
@@ -32,7 +29,6 @@ Heroku Postgres database by doing the following:
 $ heroku login
 $ heroku create
 ```
-
 2. Create a new database to add to your Heroku app.
 ```
 $ heroku addons:create heroku-postgresql-hobby-dev
@@ -40,13 +36,11 @@ $ heroku addons:create heroku-postgresql-hobby-dev
 > You may need to wait 5-10 minutes while the database is setting
 up. You can check your database's availability by going to
 [https://postgres.heroku.com/databases](https://postgres.heroku.com/databases).
-
 3. You can use the following command to view general information
 about your database:
 ```
 $ heroku pg:info
 ```
-
 4. If you have `psql` installed on your local computer, you can
 use it to connect to your database with the following:
 ```
@@ -58,7 +52,6 @@ Type "help" for help.
 
 <app-name>::DATABASE=>
 ```
-
 5. Once connected remotely, execute the following command to create
 a table named `polls`, which will be used in the app.
 ```
@@ -69,7 +62,6 @@ Make sure table created correctly:
 SELECT * FROM polls;
 ```
 Exit psql: `CTRL+D`.
-
 6. Create a `app/db/config.js` file with the following contents:
 ```javascript
 var pg = require('pg');
