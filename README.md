@@ -39,7 +39,8 @@ start at 0 on default, making it unnecessary to explicity set
 on POST. They will be incremented as PUT requests come in,
 ensuring that votes will stay above 0.
 
-**Table Name: `polls`**
+**Table Name:** `polls`
+
 | Col Name | Data Type | Constraints |
 | -------- | --------- | ----------- |
 | uuid | char(36) | UNIQUE |
@@ -57,9 +58,9 @@ The REST API was built with the following operations in mind:
 
 | HTTP Verb | Url Path | Description |
 | --------- | -------- | ----------- |
-| GET | '/api/polls' | Retrieves all polls in database. |
-| POST | '/api/polls' | Adds a new poll in database. |
-| PUT | '/api/polls/:id' | Updates a poll in database where `uuid=:id`. |
-| DEL | '/api/polls/:id' | Deletes a poll in database where `uuid=:id`.|
+| GET | /api/polls | Retrieves all polls in database. |
+| POST | /api/polls | Adds a new poll in database. |
+| PUT | /api/polls/:id | Updates a poll in database where `uuid=:id`. |
+| DEL | /api/polls/:id | Deletes a poll in database where `uuid=:id`.|
 
 > All responses return a JSON object, which includes all polls in the updated database.
