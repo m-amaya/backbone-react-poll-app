@@ -19,6 +19,7 @@
     "bootstrap": "~3.3.5",
     "lodash": "~3.10.0",
     "font-awesome": "~4.3.0",
-    "backbone": "~1.2.1"
+    "backbone": "~1.2.1",
+    "metro": "~3.0.7"
   }
 }

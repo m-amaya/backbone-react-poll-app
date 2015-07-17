@@ -1,0 +1,244 @@
+
+/*
+ * Frygia - Normal
+ */
+
+@font-face {
+    font-family: 'frygia';
+    src: url('thin/frygia-thin-webfont.eot');
+    src: url('thin/frygia-thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thin/frygia-thin-webfont.woff2') format('woff2'),
+         url('thin/frygia-thin-webfont.woff') format('woff'),
+         url('thin/frygia-thin-webfont.ttf') format('truetype'),
+         url('thin/frygia-thin-webfont.svg#frygia') format('svg');
+    font-weight: 100;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('extra-light/frygia-xlight-webfont.eot');
+    src: url('extra-light/frygia-xlight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('extra-light/frygia-xlight-webfont.woff2') format('woff2'),
+         url('extra-light/frygia-xlight-webfont.woff') format('woff'),
+         url('extra-light/frygia-xlight-webfont.ttf') format('truetype'),
+         url('extra-light/frygia-xlight-webfont.svg#frygia') format('svg');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('light/frygia-light-webfont.eot');
+    src: url('light/frygia-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('light/frygia-light-webfont.woff2') format('woff2'),
+         url('light/frygia-light-webfont.woff') format('woff'),
+         url('light/frygia-light-webfont.ttf') format('truetype'),
+         url('light/frygia-light-webfont.svg#frygia') format('svg');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('regular/frygia-regular-webfont.eot');
+    src: url('regular/frygia-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('regular/frygia-regular-webfont.woff2') format('woff2'),
+         url('regular/frygia-regular-webfont.woff') format('woff'),
+         url('regular/frygia-regular-webfont.ttf') format('truetype'),
+         url('regular/frygia-regular-webfont.svg#frygia') format('svg');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('book/frygia-book-webfont.eot');
+    src: url('book/frygia-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('book/frygia-book-webfont.woff2') format('woff2'),
+         url('book/frygia-book-webfont.woff') format('woff'),
+         url('book/frygia-book-webfont.ttf') format('truetype'),
+         url('book/frygia-book-webfont.svg#frygia') format('svg');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('medium/frygia-medium-webfont.eot');
+    src: url('medium/frygia-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('medium/frygia-medium-webfont.woff2') format('woff2'),
+         url('medium/frygia-medium-webfont.woff') format('woff'),
+         url('medium/frygia-medium-webfont.ttf') format('truetype'),
+         url('medium/frygia-medium-webfont.svg#frygia') format('svg');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('bold/frygia-bold-webfont.eot');
+    src: url('bold/frygia-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('bold/frygia-bold-webfont.woff2') format('woff2'),
+         url('bold/frygia-bold-webfont.woff') format('woff'),
+         url('bold/frygia-bold-webfont.ttf') format('truetype'),
+         url('bold/frygia-bold-webfont.svg#frygia') format('svg');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('heavy/frygia-heavy-webfont.eot');
+    src: url('heavy/frygia-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('heavy/frygia-heavy-webfont.woff2') format('woff2'),
+         url('heavy/frygia-heavy-webfont.woff') format('woff'),
+         url('heavy/frygia-heavy-webfont.ttf') format('truetype'),
+         url('heavy/frygia-heavy-webfont.svg#frygia') format('svg');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('black/frygia-black-webfont.eot');
+    src: url('black/frygia-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('black/frygia-black-webfont.woff2') format('woff2'),
+         url('black/frygia-black-webfont.woff') format('woff'),
+         url('black/frygia-black-webfont.ttf') format('truetype'),
+         url('black/frygia-black-webfont.svg#frygia') format('svg');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+
+
+/*
+ * Frygia - Italic
+ */
+
+@font-face {
+    font-family: 'frygia';
+    src: url('thin/italic/frygia-thinitalic-webfont.eot');
+    src: url('thin/italic/frygia-thinitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('thin/italic/frygia-thinitalic-webfont.woff2') format('woff2'),
+         url('thin/italic/frygia-thinitalic-webfont.woff') format('woff'),
+         url('thin/italic/frygia-thinitalic-webfont.ttf') format('truetype'),
+         url('thin/italic/frygia-thinitalic-webfont.svg#frygia') format('svg');
+    font-weight: 100;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('extra-light/italic/frygia-xlightitalic-webfont.eot');
+    src: url('extra-light/italic/frygia-xlightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('extra-light/italic/frygia-xlightitalic-webfont.woff2') format('woff2'),
+         url('extra-light/italic/frygia-xlightitalic-webfont.woff') format('woff'),
+         url('extra-light/italic/frygia-xlightitalic-webfont.ttf') format('truetype'),
+         url('extra-light/italic/frygia-xlightitalic-webfont.svg#frygia') format('svg');
+    font-weight: 200;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('light/italic/frygia-lightitalic-webfont.eot');
+    src: url('light/italic/frygia-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('light/italic/frygia-lightitalic-webfont.woff2') format('woff2'),
+         url('light/italic/frygia-lightitalic-webfont.woff') format('woff'),
+         url('light/italic/frygia-lightitalic-webfont.ttf') format('truetype'),
+         url('light/italic/frygia-lightitalic-webfont.svg#frygia') format('svg');
+    font-weight: 300;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('regular/italic/frygia-italic-webfont.eot');
+    src: url('regular/italic/frygia-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('regular/italic/frygia-italic-webfont.woff2') format('woff2'),
+         url('regular/italic/frygia-italic-webfont.woff') format('woff'),
+         url('regular/italic/frygia-italic-webfont.ttf') format('truetype'),
+         url('regular/italic/frygia-italic-webfont.svg#frygia') format('svg');
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('book/italic/frygia-bookitalic-webfont.eot');
+    src: url('book/italic/frygia-bookitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('book/italic/frygia-bookitalic-webfont.woff2') format('woff2'),
+         url('book/italic/frygia-bookitalic-webfont.woff') format('woff'),
+         url('book/italic/frygia-bookitalic-webfont.ttf') format('truetype'),
+         url('book/italic/frygia-bookitalic-webfont.svg#frygia') format('svg');
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('medium/italic/frygia-mediumita-webfont.eot');
+    src: url('medium/italic/frygia-mediumita-webfont.eot?#iefix') format('embedded-opentype'),
+         url('medium/italic/frygia-mediumita-webfont.woff2') format('woff2'),
+         url('medium/italic/frygia-mediumita-webfont.woff') format('woff'),
+         url('medium/italic/frygia-mediumita-webfont.ttf') format('truetype'),
+         url('medium/italic/frygia-mediumita-webfont.svg#frygia') format('svg');
+    font-weight: 600;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('bold/italic/frygia-bolditalic-webfont.eot');
+    src: url('bold/italic/frygia-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('bold/italic/frygia-bolditalic-webfont.woff2') format('woff2'),
+         url('bold/italic/frygia-bolditalic-webfont.woff') format('woff'),
+         url('bold/italic/frygia-bolditalic-webfont.ttf') format('truetype'),
+         url('bold/italic/frygia-bolditalic-webfont.svg#frygia') format('svg');
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('heavy/italic/frygia-heavyitalic-webfont.eot');
+    src: url('heavy/italic/frygia-heavyitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('heavy/italic/frygia-heavyitalic-webfont.woff2') format('woff2'),
+         url('heavy/italic/frygia-heavyitalic-webfont.woff') format('woff'),
+         url('heavy/italic/frygia-heavyitalic-webfont.ttf') format('truetype'),
+         url('heavy/italic/frygia-heavyitalic-webfont.svg#frygia') format('svg');
+    font-weight: 800;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'frygia';
+    src: url('black/italic/frygia-blackitalic-webfont.eot');
+    src: url('black/italic/frygia-blackitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('black/italic/frygia-blackitalic-webfont.woff2') format('woff2'),
+         url('black/italic/frygia-blackitalic-webfont.woff') format('woff'),
+         url('black/italic/frygia-blackitalic-webfont.ttf') format('truetype'),
+         url('black/italic/frygia-blackitalic-webfont.svg#frygia') format('svg');
+    font-weight: 900;
+    font-style: italic;
+
+}
