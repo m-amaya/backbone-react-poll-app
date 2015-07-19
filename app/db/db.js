@@ -39,45 +39,43 @@ module.exports = {
     });
   },
   updatePoll: function (req, res, client) {
-    console.log(req.originalMethod + ' ' + req.originalUrl);
+    console.log(req.body);
+    //console.log(req.originalMethod + ' ' + req.originalUrl);
     // grab data
-    var votefor = {
-      opt1: req.body.opt1,
-      opt2: req.body.opt2,
-      opt3: req.body.opt3
-    }
 
-    if (votefor.opt1) {
-      console.log("Option 1 voted on.");
-      var query = client.query("UPDATE polls SET opt1votes = opt1votes + 1 WHERE uuid = '" + req.params.id + "'");
-      query.on("end", function (result) {
-        res.json(result);
-      });
-      query.on("error", function (error) {
-        res.json(error);
-      });
-    }
-
-    if (votefor.opt2) {
-      console.log("Option 2 voted on.");
-      var query = client.query("UPDATE polls SET opt2votes = opt2votes + 1 WHERE uuid = '" + req.params.id + "'");
-      query.on("end", function (result) {
-        res.json(result);
-      });
-      query.on("error", function (error) {
-        res.json(error);
-      });
-    }
-
-    if (votefor.opt3) {
-      console.log("Option 3 voted on.");
-      var query = client.query("UPDATE polls SET opt3votes = opt3votes + 1 WHERE uuid = '" + req.params.id + "'");
-      query.on("end", function (result) {
-        res.json(result);
-      });
-      query.on("error", function (error) {
-        res.json(error);
-      });
+    switch (req.body.opt) {
+      case 1:
+        console.log("Option 1 voted on.");
+        var query = client.query("UPDATE polls SET opt1votes = opt1votes + 1 WHERE uuid = '" + req.params.id + "'");
+        query.on("end", function (result) {
+          res.json(result);
+        });
+        query.on("error", function (error) {
+          res.json(error);
+        });
+        break;
+      case 2:
+        console.log("Option 2 voted on.");
+        var query = client.query("UPDATE polls SET opt2votes = opt2votes + 1 WHERE uuid = '" + req.params.id + "'");
+        query.on("end", function (result) {
+          res.json(result);
+        });
+        query.on("error", function (error) {
+          res.json(error);
+        });
+        break;
+      case 3:
+        console.log("Option 3 voted on.");
+        var query = client.query("UPDATE polls SET opt3votes = opt3votes + 1 WHERE uuid = '" + req.params.id + "'");
+        query.on("end", function (result) {
+          res.json(result);
+        });
+        query.on("error", function (error) {
+          res.json(error);
+        });
+        break;
+      default:
+        break;
     }
   }
 }

@@ -33,7 +33,15 @@ module.exports = function (grunt) {
         options: {
           debug: true
         },
-        src: ['public/src/js/*.js', 'public/src/js/view/*.jsx'],
+        src: [
+              'public/src/js/collection/*.js',
+              'public/src/js/model/*.js',
+              'public/src/js/router/*.js',
+              'public/src/js/util/*.js',
+              'public/src/js/view/*.js',
+              'public/src/js/view/*.jsx',
+              'public/src/js/*.js',
+              'public/src/js/*.jsx' ],
         dest: 'public/build/bundle.js'
       },
       production: {
@@ -41,11 +49,6 @@ module.exports = function (grunt) {
           debug: false
         },
         src: [
-          'public/libs/underscore/underscore-min.js',
-          'public/libs/jquery/dist/jquery.min.js',
-          'public/libs/d3/d3.min.js',
-          'public/libs/react/react.min.js',
-          'public/libs/backbone/backbone-min.js',
           '<%= browserify.dev.src %>'
         ],
         dest: 'public/build/bundle.js'
@@ -61,13 +64,21 @@ module.exports = function (grunt) {
         }
       },
       browserify: {
-        files: 'public/src/js/view/*.jsx',
+        files: [
+              'public/src/js/collection/*.js',
+              'public/src/js/model/*.js',
+              'public/src/js/router/*.js',
+              'public/src/js/util/*.js',
+              'public/src/js/view/*.js',
+              'public/src/js/view/*.jsx',
+              'public/src/js/*.js',
+              'public/src/js/*.jsx' ],
         tasks: ['browserify:dev']
       }
     }
   });
 
-  grunt.registerTask('default', ['less', 'browserify:dev', 'uglify', 'watch']);
+  grunt.registerTask('default', ['less', 'browserify:dev', 'watch']);
   grunt.registerTask('package', ['less', 'browserify:production', 'uglify']);
 
 };

@@ -20,6 +20,8 @@
     "lodash": "~3.10.0",
     "font-awesome": "~4.3.0",
     "backbone": "~1.2.1",
-    "metro": "~3.0.7"
+    "metro": "~3.0.7",
+    "require": "*",
+    "classnames": "~2.1.3"
   }
 }
