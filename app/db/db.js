@@ -44,7 +44,7 @@ module.exports = {
     // grab data
 
     switch (req.body.opt) {
-      case 1:
+      case '1':
         console.log("Option 1 voted on.");
         var query = client.query("UPDATE polls SET opt1votes = opt1votes + 1 WHERE uuid = '" + req.params.id + "'");
         query.on("end", function (result) {
@@ -54,7 +54,7 @@ module.exports = {
           res.json(error);
         });
         break;
-      case 2:
+      case '2':
         console.log("Option 2 voted on.");
         var query = client.query("UPDATE polls SET opt2votes = opt2votes + 1 WHERE uuid = '" + req.params.id + "'");
         query.on("end", function (result) {
@@ -64,7 +64,7 @@ module.exports = {
           res.json(error);
         });
         break;
-      case 3:
+      case '3':
         console.log("Option 3 voted on.");
         var query = client.query("UPDATE polls SET opt3votes = opt3votes + 1 WHERE uuid = '" + req.params.id + "'");
         query.on("end", function (result) {
@@ -75,6 +75,7 @@ module.exports = {
         });
         break;
       default:
+        res.json({ message: "Not a valid opt case." });
         break;
     }
   }

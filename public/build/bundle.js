@@ -272,22 +272,58 @@ module.exports = Backbone.Model.extend({
 var BackboneMixin = require('../mixins/ComponentMixin');
 var classNames = require("./../../../libs/classnames/index.js");
 
+//  updatePoll: function (poll, opt) {
+//    console.log("Setting opt to " + opt);
+//    var optXvotes = "opt" + opt + "votes";
+//    var newVote = poll.get(optXvotes) + 1;
+//    poll.set(optXvotes, newVote);
+//    poll.save({
+//      opt: opt
+//    }, {
+//      success: function (model, response, options) {
+//        console.log("Response from [PUT]: " + JSON.stringify(response));
+//      },
+//      error: function (model, xhr, options) {
+//        console.log("Error from [PUT]: " + JSON.stringify(xhr));
+//      }
+//    });
+//  },
+
 var PollVote = React.createClass({displayName: "PollVote",
-  handleClick: function(){
-    console.log("Handle vote update here.");
+  upVote: function(){
+    var optXvotes = "opt" + this.props.optSelect + "votes";
+    var oldVote = this.props.poll.get(optXvotes);
+    var newVote = oldVote + 1;
+    this.props.poll.set(optXvotes, newVote);
+    this.props.poll.save({
+      opt: this.props.optSelect
+    }, {
+      success: function(model, response, options) {
+        if (response.message) {
+          model.set(optXvotes, oldVote);
+        }
+        console.log("Response from [PUT]: " + JSON.stringify(response));
+      },
+      error: function(model, xhr, options) {
+        model.set(optXvotes, oldVote);
+        console.log("Error from [PUT]: " + JSON.stringify(xhr));
+      }
+    });
   },
   render: function() {
+    var optClass = "opt" + this.props.optSelect;
     return (
       React.createElement("div", {className: "pollVote"}, 
-        React.createElement("div", {className: this.props.optClass}, this.props.poll.get(this.props.optClass)), 
-        React.createElement("a", {href: "#", onClick: this.handleClick}, "Vote")
+        React.createElement("div", {className: optClass}, this.props.poll.get(optClass)), 
+        React.createElement("div", {onClick: this.upVote}, "Vote"), 
+        React.createElement("div", null, "Votes: ", this.props.poll.get(optClass+"votes"))
       )
     );
   }
 });
 
 module.exports = React.createClass({displayName: "exports",
-  //mixins: [BackboneMixin],
+  mixins: [BackboneMixin],
   getBackboneModels: function() {
     return [this.props.polls];
   },
@@ -296,9 +332,9 @@ module.exports = React.createClass({displayName: "exports",
       return (
         React.createElement("div", {className: "poll"}, 
           React.createElement("div", {className: "question"}, poll.get("question")), 
-          React.createElement(PollVote, {optClass: "opt1", poll: poll}), 
-          React.createElement(PollVote, {optClass: "opt2", poll: poll}), 
-          React.createElement(PollVote, {optClass: "opt3", poll: poll})
+          React.createElement(PollVote, {optSelect: "1", poll: poll}), 
+          React.createElement(PollVote, {optSelect: "2", poll: poll}), 
+          React.createElement(PollVote, {optSelect: "3", poll: poll})
         )
       );
     });
