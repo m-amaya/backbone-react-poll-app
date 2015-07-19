@@ -1,8 +1,9 @@
-var PollCollectionComponent = require('./PollCollectionComponent.jsx');
+var PollViewComponent = require('./PollCollectionComponent.jsx');
+var PollFormComponent = require('./PollFormComponent.jsx');
 
 module.exports =
   Backbone.View.extend({
-    el: '#pollCollectionView',
+    el: 'body',
     initialize: function () {
       this.listenTo(
         this.collection, 'add update change:opt1votes change:opt2votes change:opt3votes', this.render, this
@@ -18,8 +19,8 @@ module.exports =
     },
     render: function () {
       React.render(
-        <PollCollectionComponent polls={this.collection} />,
-        document.getElementById('pollCollectionView')
+        <PollViewComponent polls={this.collection} />,
+        document.body
       );
       return this;
     }

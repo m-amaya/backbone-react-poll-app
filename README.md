@@ -1,6 +1,6 @@
 #User Polling Web App
 
-My first web application utitilizing Postgres, Backbone and React.
+My first web application utilizing Postgres, Backbone and React.
 
 ##Technology Stack
 

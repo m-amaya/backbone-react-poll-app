@@ -1,55 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/*!
-  Copyright (c) 2015 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-
-(function () {
-	'use strict';
-
-	function classNames () {
-
-		var classes = '';
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if ('string' === argType || 'number' === argType) {
-				classes += ' ' + arg;
-
-			} else if (Array.isArray(arg)) {
-				classes += ' ' + classNames.apply(null, arg);
-
-			} else if ('object' === argType) {
-				for (var key in arg) {
-					if (arg.hasOwnProperty(key) && arg[key]) {
-						classes += ' ' + key;
-					}
-				}
-			}
-		}
-
-		return classes.substr(1);
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd){
-		// AMD. Register as an anonymous module.
-		define(function () {
-			return classNames;
-		});
-	} else {
-		window.classNames = classNames;
-	}
-
-}());
-
-},{}],2:[function(require,module,exports){
 var Poll = require('./model/Poll');
 var PollCollection = require('./collection/PollCollection');
 var PollCollectionView = require('./view/PollCollectionView.jsx');
@@ -172,7 +121,7 @@ var newPoll = new Poll({
 //  console.log("opt3votes has been changed: " + JSON.stringify(model));
 //});
 
-},{"./collection/PollCollection":3,"./model/Poll":5,"./view/PollCollectionView.jsx":7}],3:[function(require,module,exports){
+},{"./collection/PollCollection":2,"./model/Poll":4,"./view/PollCollectionView.jsx":6}],2:[function(require,module,exports){
 var Poll = require('../model/Poll');
 
 module.exports =
@@ -206,7 +155,7 @@ module.exports =
 //    }
   });
 
-},{"../model/Poll":5}],4:[function(require,module,exports){
+},{"../model/Poll":4}],3:[function(require,module,exports){
 /*
  * https://github.com/facebook/react/blob/1be9a9e/examples/todomvc-backbone/js/app.js#L148-L171
  * 
@@ -237,7 +186,7 @@ module.exports = {
   }
 }
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 module.exports = Backbone.Model.extend({
   defaults: {
     question: "",
@@ -268,26 +217,9 @@ module.exports = Backbone.Model.extend({
   urlRoot: "http://localhost:8000/api/polls"
 });
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
+var Poll = require('../model/Poll');
 var BackboneMixin = require('../mixins/ComponentMixin');
-var classNames = require("./../../../libs/classnames/index.js");
-
-//  updatePoll: function (poll, opt) {
-//    console.log("Setting opt to " + opt);
-//    var optXvotes = "opt" + opt + "votes";
-//    var newVote = poll.get(optXvotes) + 1;
-//    poll.set(optXvotes, newVote);
-//    poll.save({
-//      opt: opt
-//    }, {
-//      success: function (model, response, options) {
-//        console.log("Response from [PUT]: " + JSON.stringify(response));
-//      },
-//      error: function (model, xhr, options) {
-//        console.log("Error from [PUT]: " + JSON.stringify(xhr));
-//      }
-//    });
-//  },
 
 var PollVote = React.createClass({displayName: "PollVote",
   upVote: function(){
@@ -316,7 +248,98 @@ var PollVote = React.createClass({displayName: "PollVote",
       React.createElement("div", {className: "pollVote"}, 
         React.createElement("div", {className: optClass}, this.props.poll.get(optClass)), 
         React.createElement("div", {onClick: this.upVote}, "Vote"), 
-        React.createElement("div", null, "Votes: ", this.props.poll.get(optClass+"votes"))
+        React.createElement("div", {className: "voteDisplay"}, "Votes: ", this.props.poll.get(optClass+"votes"))
+      )
+    );
+  }
+});
+
+//  delPoll: function (poll) {
+//    poll.destroy({
+//      success: function (model, response, options) {
+//        console.log("Response from [DELETE]: " + JSON.stringify(response));
+//      },
+//      error: function (model, xhr, options) {
+//        console.log("Error from [DELETE]: " + JSON.stringify(xhr));
+//      }
+//    });
+//  }
+
+var PollComponent = React.createClass({displayName: "PollComponent",
+  delPoll: function() {
+    var that = this;
+    this.props.poll.destroy({
+      success: function(model, response, options) {
+        console.log("Response from [DELETE]: " + JSON.stringify(response));
+        that.props.polls.remove(model);
+      },
+      error: function(model, xhr, options) {
+        console.log("Error from [DELETE]: " + JSON.stringify(xhr));
+      }
+    });
+  },
+  render: function() {
+    return (
+      React.createElement("div", {className: "poll"}, 
+        React.createElement("i", {className: "fa fa-close", onClick: this.delPoll}), 
+        React.createElement("div", {className: "question"}, this.props.poll.get("question")), 
+        React.createElement(PollVote, {optSelect: "1", poll: this.props.poll}), 
+        React.createElement(PollVote, {optSelect: "2", poll: this.props.poll}), 
+        React.createElement(PollVote, {optSelect: "3", poll: this.props.poll})
+      )
+    );
+  }
+});
+
+
+var PollGrid = React.createClass({displayName: "PollGrid",
+  render: function() {
+    var that = this;
+    var pollGrid = this.props.polls.map(function(poll) {
+      return (
+        React.createElement(PollComponent, {poll: poll, polls: that.props.polls})
+      );
+    });
+    return React.createElement("div", {id: "pollGrid"}, pollGrid);
+  }
+});
+
+var PollForm = React.createClass({displayName: "PollForm",
+  addPoll: function(e) {
+    e.preventDefault();
+    var question = React.findDOMNode(this.refs.question).value.trim();
+    var opt1 = React.findDOMNode(this.refs.opt1).value.trim();
+    var opt2 = React.findDOMNode(this.refs.opt2).value.trim();
+    var opt3 = React.findDOMNode(this.refs.opt3).value.trim();
+    var newPoll = new Poll({
+      question: question,
+      opt1: opt1,
+      opt2: opt2,
+      opt3: opt3
+    });
+    var that = this;
+    newPoll.save({}, {
+      success: function(model, response, options) {
+        console.log("Response from [POST]: " + JSON.stringify(response));
+        that.props.polls.add(model);
+        React.findDOMNode(that.refs.question).value = "";
+        React.findDOMNode(that.refs.opt1).value = "";
+        React.findDOMNode(that.refs.opt2).value = "";
+        React.findDOMNode(that.refs.opt3).value = "";
+      },
+      error: function(model, xhr, options) {
+        console.log("Error from [POST]: " + JSON.stringify(xhr));
+      }
+    });
+  },
+  render: function() {
+    return (
+      React.createElement("form", {className: "pollForm", onSubmit: this.addPoll}, 
+        React.createElement("input", {type: "text", placeholder: "Question", ref: "question", required: true, maxLength: "100"}), 
+        React.createElement("input", {type: "text", placeholder: "Option 1", ref: "opt1", required: true, maxLength: "50"}), 
+        React.createElement("input", {type: "text", placeholder: "Option 2", ref: "opt2", required: true, maxLength: "50"}), 
+        React.createElement("input", {type: "text", placeholder: "Option 3", ref: "opt3", required: true, maxLength: "50"}), 
+        React.createElement("button", {type: "submit"}, "Add Poll")
       )
     );
   }
@@ -328,26 +351,25 @@ module.exports = React.createClass({displayName: "exports",
     return [this.props.polls];
   },
   render: function() {
-    var pollGrid = this.props.polls.map(function(poll) {
-      return (
-        React.createElement("div", {className: "poll"}, 
-          React.createElement("div", {className: "question"}, poll.get("question")), 
-          React.createElement(PollVote, {optSelect: "1", poll: poll}), 
-          React.createElement(PollVote, {optSelect: "2", poll: poll}), 
-          React.createElement(PollVote, {optSelect: "3", poll: poll})
+    return (
+      React.createElement("div", {id: "main-content"}, 
+        React.createElement("h1", null, "Keep Calm and Poll On"), 
+        React.createElement(PollGrid, {polls: this.props.polls}), 
+        React.createElement("div", {id: "form-content"}, 
+          React.createElement(PollForm, {polls: this.props.polls})
         )
-      );
-    });
-    return React.createElement("div", {id: "pollGrid"}, pollGrid);
+      )
+    );
   }
 });
 
-},{"../mixins/ComponentMixin":4,"./../../../libs/classnames/index.js":1}],7:[function(require,module,exports){
-var PollCollectionComponent = require('./PollCollectionComponent.jsx');
+},{"../mixins/ComponentMixin":3,"../model/Poll":4}],6:[function(require,module,exports){
+var PollViewComponent = require('./PollCollectionComponent.jsx');
+var PollFormComponent = require('./PollFormComponent.jsx');
 
 module.exports =
   Backbone.View.extend({
-    el: '#pollCollectionView',
+    el: 'body',
     initialize: function () {
       this.listenTo(
         this.collection, 'add update change:opt1votes change:opt2votes change:opt3votes', this.render, this
@@ -363,11 +385,49 @@ module.exports =
     },
     render: function () {
       React.render(
-        React.createElement(PollCollectionComponent, {polls: this.collection}),
-        document.getElementById('pollCollectionView')
+        React.createElement(PollViewComponent, {polls: this.collection}),
+        document.body
       );
       return this;
     }
   });
 
-},{"./PollCollectionComponent.jsx":6}]},{},[3,5,6,7,2]);
+},{"./PollCollectionComponent.jsx":5,"./PollFormComponent.jsx":7}],7:[function(require,module,exports){
+var Poll = require('../model/Poll');
+
+module.exports = React.createClass({displayName: "exports",
+  addPoll: function(e) {
+    e.preventDefault();
+    var question = React.findDOMNode(this.refs.question).value.trim();
+    var opt1 = React.findDOMNode(this.refs.opt1).value.trim();
+    var opt2 = React.findDOMNode(this.refs.opt2).value.trim();
+    var opt3 = React.findDOMNode(this.refs.opt3).value.trim();
+    var newPoll = new Poll({
+      question: question,
+      opt1: opt1,
+      opt2: opt2,
+      opt3: opt3
+    });
+    newPoll.save({}, {
+      success: function(model, response, options) {
+        console.log("Response from [POST]: " + JSON.stringify(response));
+      },
+      error: function(model, xhr, options) {
+        console.log("Error from [POST]: " + JSON.stringify(xhr));
+      }
+    });
+  },
+  render: function() {
+    return (
+      React.createElement("form", {className: "pollForm", onSubmit: this.addPoll}, 
+        React.createElement("input", {type: "text", placeholder: "Question", ref: "question", required: true}), 
+        React.createElement("input", {type: "text", placeholder: "Option 1", ref: "opt1", required: true}), 
+        React.createElement("input", {type: "text", placeholder: "Option 2", ref: "opt2", required: true}), 
+        React.createElement("input", {type: "text", placeholder: "Option 3", ref: "opt3", required: true}), 
+        React.createElement("button", {type: "submit"}, "Add Poll")
+      )
+    );
+  }
+});
+
+},{"../model/Poll":4}]},{},[2,4,5,6,7,1]);
