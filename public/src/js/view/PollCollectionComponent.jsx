@@ -28,22 +28,67 @@ var PollVote = React.createClass({
       <div className="pollVote">
         <div className={optClass}>{this.props.poll.get(optClass)}</div>
         <div onClick={this.upVote}>Vote</div>
-        <div className="voteDisplay">Votes: {this.props.poll.get(optClass+"votes")}</div>
       </div>
     );
   }
 });
 
-//  delPoll: function (poll) {
-//    poll.destroy({
-//      success: function (model, response, options) {
-//        console.log("Response from [DELETE]: " + JSON.stringify(response));
-//      },
-//      error: function (model, xhr, options) {
-//        console.log("Error from [DELETE]: " + JSON.stringify(xhr));
-//      }
-//    });
-//  }
+var dataset = [
+  {label: "Black", votes: 3 },
+  {label: "Blue", votes: 4 },
+  {label: "Green", votes: 6 },
+];
+
+var D3Chart = React.createClass({
+  getDefaultProps: function() {
+    return {
+      width: 360,
+      height: 360,
+      maxColHeight: 300,
+      gutter: 5
+    }
+  },
+  getColWidth: function() {
+    return (this.props.width / 3) - (2*this.props.gutter);
+  },
+  getTranslateStr: function(colNum, colHeight) {
+    var tx = ((colNum-1)*(this.props.width/3)) + this.props.gutter;
+    var ty = this.props.height - colHeight - 10;
+    return "translate(" + tx + "," + ty + ")";
+  },
+  calcHeight: function(currVote) {
+    var maxVote = Math.max(this.props.poll.get("opt1votes"),this.props.poll.get("opt2votes"),this.props.poll.get("opt3votes"));
+    return (this.props.maxColHeight*currVote)/maxVote;
+  },
+  render: function() {
+    return (
+      <svg width={this.props.width} height={this.props.height}>
+        <g transform={this.getTranslateStr(1,this.calcHeight(this.props.poll.get("opt1votes")))}>
+          <rect width={this.getColWidth()} height={this.calcHeight(this.props.poll.get("opt1votes"))} />
+          <text y="-10" text-anchor="middle" alignment-baseline="middle">{this.props.poll.get("opt1votes") + " Votes"}</text>
+        </g>
+        <g transform={this.getTranslateStr(2,this.calcHeight(this.props.poll.get("opt2votes")))}>
+          <rect width={this.getColWidth()} height={this.calcHeight(this.props.poll.get("opt2votes"))} fill="#eee"/>
+          <text y="-10" text-anchor="middle" alignment-baseline="middle">{this.props.poll.get("opt2votes") + " Votes"}</text>
+        </g>
+        <g transform={this.getTranslateStr(3,this.calcHeight(this.props.poll.get("opt3votes")))}>
+          <rect width={this.getColWidth()} height={this.calcHeight(this.props.poll.get("opt3votes"))} fill="#888"/>
+          <text y="-10" text-anchor="middle" alignment-baseline="middle">{this.props.poll.get("opt3votes") + " Votes"}</text>
+        </g>
+      </svg>
+    );
+  }
+});
+
+var VoteDisplay = React.createClass({
+  render: function() {
+    return (
+      <div className="voteDisplay" id={"a"+this.props.poll.get("uuid")}>
+        <D3Chart poll={this.props.poll} />
+      </div>
+    );
+  }
+});
 
 var PollComponent = React.createClass({
   delPoll: function() {
@@ -62,6 +107,7 @@ var PollComponent = React.createClass({
     return (
       <div className="poll">
         <i className="fa fa-close" onClick={this.delPoll}></i>
+        < VoteDisplay poll={this.props.poll} />
         <div className="question">{this.props.poll.get("question")}</div>
         < PollVote optSelect="1" poll={this.props.poll} />
         < PollVote optSelect="2" poll={this.props.poll} />
@@ -138,6 +184,7 @@ module.exports = React.createClass({
         <div id="form-content">
           < PollForm polls={this.props.polls} />
         </div>
+        <div id="chart"></div>
       </div>
     );
   }

@@ -8,151 +8,13 @@ var pollsView = new PollCollectionView({
   collection: polls
 });
 
-
-
-var newPoll = new Poll({
-  question: "What is your favorite movie?",
-  opt1: "Jurassic Park",
-  opt2: "Terminator",
-  opt3: "Star Wars"
-});
-
-
-//var HttpService = {
-//  getPolls: function (Polls) {
-//    Polls.fetch({
-//      success: function (collection, response, options) {
-//        console.log("Response from [GET]: " + JSON.stringify(response));
-//      },
-//      error: function (collection, response, options) {
-//        console.log("Error from [GET]: " + JSON.stringify(response));
-//      }
-//    });
-//    return Polls;
-//  },
-//  addPoll: function (poll) {
-//    poll.save({}, {
-//      success: function (model, response, options) {
-//        console.log("Response from [POST]: " + JSON.stringify(response));
-//      },
-//      error: function (model, xhr, options) {
-//        console.log("Error from [POST]: " + JSON.stringify(xhr));
-//      }
-//    });
-//  },
-//  updatePoll: function (poll, opt) {
-//    console.log("Setting opt to " + opt);
-//    var optXvotes = "opt" + opt + "votes";
-//    var newVote = poll.get(optXvotes) + 1;
-//    poll.set(optXvotes, newVote);
-//    poll.save({
-//      opt: opt
-//    }, {
-//      success: function (model, response, options) {
-//        console.log("Response from [PUT]: " + JSON.stringify(response));
-//      },
-//      error: function (model, xhr, options) {
-//        console.log("Error from [PUT]: " + JSON.stringify(xhr));
-//      }
-//    });
-//  },
-//  delPoll: function (poll) {
-//    poll.destroy({
-//      success: function (model, response, options) {
-//        console.log("Response from [DELETE]: " + JSON.stringify(response));
-//      },
-//      error: function (model, xhr, options) {
-//        console.log("Error from [DELETE]: " + JSON.stringify(xhr));
-//      }
-//    });
-//  }
-//};
-
-// Collection Events
-
-
-// HTTP SERVICE
-
-// create a new poll
-//var newPoll = new Poll({
-//  question: "Who is your favorite actor?",
-//  opt1: "Charlize Theron",
-//  opt2: "Tom Hardy",
-//  opt3: "Meg Ryan"
-//});
-//
-//// Get all polls
-//crudOps.getPolls();
-////if (newPoll.isNew()) {
-////  crudOps.addPoll(newPoll);
-////}
-//
-//// collection events
-//polls.on("add", function (poll) {
-//  console.log("Poll added: " + poll.get("question"));
-//});
-//
-//polls.on("update", function (collection, options) {
-//  console.log("Collection updated!");
-//  // Add new poll
-////  if (newPoll.isNew()) {
-////    crudOps.addPoll(newPoll);
-////  }
-//  // Update first poll
-////    var firstPoll = polls.at(0);
-////    console.log("First poll to PUT: " + JSON.stringify(firstPoll));
-////    crudOps.updatePoll(firstPoll, 1);
-//  // Delete first poll
-//  //crudOps.delPoll(firstPoll);
-//});
-//
-//polls.on("change:opt1votes", function (model, options) {
-//  console.log("opt1votes has been changed: " + JSON.stringify(model));
-////  var firstPoll = polls.at(0);
-////  console.log("First poll to DELETE: " + JSON.stringify(firstPoll));
-////  crudOps.delPoll(firstPoll);
-//});
-//
-//polls.on("change:opt2votes", function (model, options) {
-//  console.log("opt2votes has been changed: " + JSON.stringify(model));
-//});
-//
-//polls.on("change:opt3votes", function (model, options) {
-//  console.log("opt3votes has been changed: " + JSON.stringify(model));
-//});
-
 },{"./collection/PollCollection":2,"./model/Poll":4,"./view/PollCollectionView.jsx":6}],2:[function(require,module,exports){
 var Poll = require('../model/Poll');
 
 module.exports =
   Backbone.Collection.extend({
     model: Poll,
-    url: 'http://localhost:8000/api/polls',
-//    initialize: function (options) {
-//      this.fetch({
-//        success: function (collection, response, options) {
-//          console.log("Collection initialized...");
-//        },
-//        error: function (collection, response, options) {
-//          console.log("Houston, we have a problem: " + JSON.stringify(response));
-//        }
-//      });
-//      this.on("update", function (collection, options) {
-//        console.log("Collection updated...");
-//      });
-//      this.on("add", function(poll) {
-//        console.log("Poll added: " + poll.get("question"));
-//      });
-//      this.on("change:opt1votes", function (model, options) {
-//        console.log("Option 1 has been voted on.");
-//      });
-//      this.on("change:opt2votes", function (model, options) {
-//        console.log("Option 2 has been voted on.");
-//      });
-//      this.on("change:opt3votes", function (model, options) {
-//        console.log("Option 3 has been voted on.");
-//      });
-//    }
+    url: 'http://localhost:8000/api/polls'
   });
 
 },{"../model/Poll":4}],3:[function(require,module,exports){
@@ -247,23 +109,68 @@ var PollVote = React.createClass({displayName: "PollVote",
     return (
       React.createElement("div", {className: "pollVote"}, 
         React.createElement("div", {className: optClass}, this.props.poll.get(optClass)), 
-        React.createElement("div", {onClick: this.upVote}, "Vote"), 
-        React.createElement("div", {className: "voteDisplay"}, "Votes: ", this.props.poll.get(optClass+"votes"))
+        React.createElement("div", {onClick: this.upVote}, "Vote")
       )
     );
   }
 });
 
-//  delPoll: function (poll) {
-//    poll.destroy({
-//      success: function (model, response, options) {
-//        console.log("Response from [DELETE]: " + JSON.stringify(response));
-//      },
-//      error: function (model, xhr, options) {
-//        console.log("Error from [DELETE]: " + JSON.stringify(xhr));
-//      }
-//    });
-//  }
+var dataset = [
+  {label: "Black", votes: 3 },
+  {label: "Blue", votes: 4 },
+  {label: "Green", votes: 6 },
+];
+
+var D3Chart = React.createClass({displayName: "D3Chart",
+  getDefaultProps: function() {
+    return {
+      width: 360,
+      height: 360,
+      maxColHeight: 300,
+      gutter: 5
+    }
+  },
+  getColWidth: function() {
+    return (this.props.width / 3) - (2*this.props.gutter);
+  },
+  getTranslateStr: function(colNum, colHeight) {
+    var tx = ((colNum-1)*(this.props.width/3)) + this.props.gutter;
+    var ty = this.props.height - colHeight - 10;
+    return "translate(" + tx + "," + ty + ")";
+  },
+  calcHeight: function(currVote) {
+    var maxVote = Math.max(this.props.poll.get("opt1votes"),this.props.poll.get("opt2votes"),this.props.poll.get("opt3votes"));
+    return (this.props.maxColHeight*currVote)/maxVote;
+  },
+  render: function() {
+    return (
+      React.createElement("svg", {width: this.props.width, height: this.props.height}, 
+        React.createElement("g", {transform: this.getTranslateStr(1,this.calcHeight(this.props.poll.get("opt1votes")))}, 
+          React.createElement("rect", {width: this.getColWidth(), height: this.calcHeight(this.props.poll.get("opt1votes"))}), 
+          React.createElement("text", {y: "-10", "text-anchor": "middle", "alignment-baseline": "middle"}, this.props.poll.get("opt1votes") + " Votes")
+        ), 
+        React.createElement("g", {transform: this.getTranslateStr(2,this.calcHeight(this.props.poll.get("opt2votes")))}, 
+          React.createElement("rect", {width: this.getColWidth(), height: this.calcHeight(this.props.poll.get("opt2votes")), fill: "#eee"}), 
+          React.createElement("text", {y: "-10", "text-anchor": "middle", "alignment-baseline": "middle"}, this.props.poll.get("opt2votes") + " Votes")
+        ), 
+        React.createElement("g", {transform: this.getTranslateStr(3,this.calcHeight(this.props.poll.get("opt3votes")))}, 
+          React.createElement("rect", {width: this.getColWidth(), height: this.calcHeight(this.props.poll.get("opt3votes")), fill: "#888"}), 
+          React.createElement("text", {y: "-10", "text-anchor": "middle", "alignment-baseline": "middle"}, this.props.poll.get("opt3votes") + " Votes")
+        )
+      )
+    );
+  }
+});
+
+var VoteDisplay = React.createClass({displayName: "VoteDisplay",
+  render: function() {
+    return (
+      React.createElement("div", {className: "voteDisplay", id: "a"+this.props.poll.get("uuid")}, 
+        React.createElement(D3Chart, {poll: this.props.poll})
+      )
+    );
+  }
+});
 
 var PollComponent = React.createClass({displayName: "PollComponent",
   delPoll: function() {
@@ -282,6 +189,7 @@ var PollComponent = React.createClass({displayName: "PollComponent",
     return (
       React.createElement("div", {className: "poll"}, 
         React.createElement("i", {className: "fa fa-close", onClick: this.delPoll}), 
+        React.createElement(VoteDisplay, {poll: this.props.poll}), 
         React.createElement("div", {className: "question"}, this.props.poll.get("question")), 
         React.createElement(PollVote, {optSelect: "1", poll: this.props.poll}), 
         React.createElement(PollVote, {optSelect: "2", poll: this.props.poll}), 
@@ -357,7 +265,8 @@ module.exports = React.createClass({displayName: "exports",
         React.createElement(PollGrid, {polls: this.props.polls}), 
         React.createElement("div", {id: "form-content"}, 
           React.createElement(PollForm, {polls: this.props.polls})
-        )
+        ), 
+        React.createElement("div", {id: "chart"})
       )
     );
   }
