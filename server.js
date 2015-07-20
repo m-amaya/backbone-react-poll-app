@@ -5,12 +5,23 @@ var bodyParser           = require('body-parser');
 var methodOverride       = require('method-override');
 
 // configuration ======================================
-var db = require('./app/db/config');
+//var db = require('./app/db/config');
 var port = process.env.PORT || 8000;
-var client = db.client();
-client.connect(function(err, client) {
+//var client = db.client();
+//client.connect(function(err, client) {
+//  if(err) { "Oops! Could not connect to db: " + err }
+//  console.log("Successfully connected to db...");
+//});
+//var connectionString = "postgres://*USERNAME*:*PASSWORD*@*HOST*:*PORT:/*DATABASE*"
+
+var client;
+
+var connectionString = "postgres://vfnhvzutbzgwsl:elYxFE1-dgIPd72uY9_9-WsiG8@ec2-54-83-36-176.compute-1.amazonaws.com:5432/d7f2urmltuej4j"
+
+pg.connect(connectionString, function(err, client, done) {
   if(err) { "Oops! Could not connect to db: " + err }
   console.log("Successfully connected to db...");
+  client = this.client;
 });
 
 app.use(bodyParser.json());
