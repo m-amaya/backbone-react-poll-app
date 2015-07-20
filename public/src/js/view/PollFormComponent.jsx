@@ -13,9 +13,15 @@ module.exports = React.createClass({
       opt2: opt2,
       opt3: opt3
     });
+    var that = this;
     newPoll.save({}, {
       success: function(model, response, options) {
         console.log("Response from [POST]: " + JSON.stringify(response));
+        that.props.polls.add(model);
+        React.findDOMNode(that.refs.question).value = "";
+        React.findDOMNode(that.refs.opt1).value = "";
+        React.findDOMNode(that.refs.opt2).value = "";
+        React.findDOMNode(that.refs.opt3).value = "";
       },
       error: function(model, xhr, options) {
         console.log("Error from [POST]: " + JSON.stringify(xhr));
@@ -25,11 +31,15 @@ module.exports = React.createClass({
   render: function() {
     return (
       <form className="pollForm" onSubmit={this.addPoll}>
-        <input type="text" placeholder="Question" ref="question" required />
-        <input type="text" placeholder="Option 1" ref="opt1" required />
-        <input type="text" placeholder="Option 2" ref="opt2" required />
-        <input type="text" placeholder="Option 3" ref="opt3" required />
-        <button type="submit">Add Poll</button>
+        <label for="questionIn" id="questionLbl">Question</label>
+        <input id="questionIn" type="text" ref="question" required maxLength="100" />
+        <label for="opt1In" id="opt1Lbl">Option #1</label>
+        <input id="opt1In" type="text" ref="opt1" required maxLength="50" />
+        <label for="opt2In" id="opt2Lbl">Option #2</label>
+        <input id="opt2In" type="text" ref="opt2" required maxLength="50" />
+        <label for="opt3In" id="opt3Lbl">Option #3</label>
+        <input id="opt3In" type="text" ref="opt3" required maxLength="50" />
+        <button type="submit">ADD POLL</button>
       </form>
     );
   }

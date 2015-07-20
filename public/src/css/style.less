@@ -1,22 +1,321 @@
+// COLOR PALETTE
+@white: #FFFFFF;
+@lightfog: #EEEEEE;
+@fog: #CCCCCC;
+@lightercoral: #FEF7F7;
+@lightcoral: #FEE7E7;
+@coral: #FC8C7E;
+@offblack: #323232;
+
+// CONSTANTS
+@br: 4px;
+@border: 1px solid @fog;
+@inputWidth: 100% / 5;
+@buttonWidth: @inputWidth / 2;
+@questionMargin: @buttonWidth / 2;
+@bwidth: 3px;
+
+/******************************************************
+ * BODY STYLES
+ ******************************************************/
+
 body {
   font-family: 'Fira Sans', 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 100%;
+  color: @offblack;
+  background: @lightcoral;
+  @media screen and (max-width: 500px) {
+    font-size: 90%;
+  }
+}
+#main-content {
+  //max-width: 900px;
+  width: 90%;
+  height: 100%;
+  overflow: auto;
+  margin: 6em auto 2em;
+  padding: 2em 1em 1em 1em;
+  background: @white;
+  border: @border;
+  border-radius: @br;
+  text-align: center;
+  @media screen and (min-width: 500px) {
+    margin-top: 7em;
+  }
+  .title {
+    color: @fog;
+    text-align: center;
+    font-size: 2.2em;
+    @media screen and (min-width: 820px) {
+      font-size: 2.4em;
+    }
+    span {
+      display: inline-block;
+      font-weight: 300;
+      letter-spacing: 1px;
+      
+      &:nth-child(2) {
+        padding: 0 0.5em;
+        color: @coral;
+        font-weight: 400;
+        font-size: 110%;
+      }
+    }
+  }
+  .pollCount {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.3em;
+    color: @coral;
+    margin-top: 0.7em;
+    span:nth-child(2) {
+      background: @coral;
+      margin: 0 10px;
+      padding: 0 10px;
+      color: @white;
+      border-radius: 50%;
+      font-size: 120%;
+    }
+  }
+  #pollGrid {
+    margin: 2em auto;
+    @media screen and (min-width: 500px) {
+      margin-top: 3em;
+    }
+  }
+  #form-content {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: left;
+    @media screen and (min-width: 500px) {
+      top: 15px;
+    }
+  }
+}
+
+/******************************************************
+ * FORM STYLES
+ ******************************************************/
+
+#form-content {
+  .pollForm {
+    background: @white;
+    max-width: 1000px;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 1.45em;
+    padding-bottom: 0.45em;
+    border: @border;
+    border-radius: @br;
+    border-bottom-width: @bwidth;
+    @media screen and (min-width: 500px) {
+      padding-top: 1.6em;
+      padding-bottom: 0.6em;
+    }
+  }
+  label {
+    position: absolute;
+    top: 3px;
+    color: @coral;
+    font-weight: 500;
+    font-size: 0.86em;
+    
+    @media screen and (min-width: 500px) {
+      top: 5px;
+    }
+    
+    &#questionLbl {
+      margin-left: @questionMargin + 1%;
+    }
+    
+    &#opt1Lbl,
+    &#opt2Lbl,
+    &#opt3Lbl {
+      margin-left: 1%;
+    }
+    
+  }
+  input {
+    width: @inputWidth;
+    height: 30px;
+    background: @lightercoral;
+    border: 1px solid @coral;
+    padding: 5px;
+    font-family: 'Fira Sans', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 1em;
+    letter-spacing: 1px;
+    line-height: 1;
+    color: @coral;
+    
+    &:focus {
+      outline: 0;
+      background: @lightcoral;
+      font-weight: 400;
+    }
+    
+    &#questionIn {
+      margin-left: @questionMargin;
+      border-top-left-radius: @br;
+      border-bottom-left-radius: @br;
+    }
+    
+    &#opt1In,
+    &#opt2In,
+    &#opt3In {
+      border-left: none;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 22px;
+    color: @coral;
+    width: 38px;
+    height: 30px;
+    border: 1px solid @coral;
+    border-left: none;
+    border-top-right-radius: @br;
+    border-bottom-right-radius: @br;
+    background: @lightcoral;
+    font-family: 'Fira Sans', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 0.8em;
+    font-weight: 700;
+    line-height: 1;
+    transition: background 0.7s;
+    transition: color 0.7s;
+    -webkit-transition: background 0.7s;
+    -webkit-transition: color 0.7s;
+    
+    @media screen and (min-width: 500px) {
+      top: 27px;
+      min-width: 46px;
+      width: 10%;
+      max-width: 119px;
+    }
+    
+    &:hover {
+      cursor: pointer;
+      background: @coral;
+      color: @white;
+    }
+  }
+}
+
+/******************************************************
+ * POLL GRID STYLES
+ ******************************************************/
+
+#pollGrid {
   
-  h1 {
-    font-family: 'Bree Serif', serif;
+  height: 100%;
+  overflow: auto;
+  margin: 0 auto;
+  
+  @media screen and (min-width: 972px) {
+    width: 841px;
   }
   
-  svg {
-    border: 1px solid pink;
+  .poll {
+    background: @lightercoral;
+    border-radius: @br*2;
+    margin: 20px auto;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    
+    @media screen and (min-width: 972px) {
+      margin: 10px;
+      float: left;
+      &:nth-child(2n+1) {
+        clear: left;
+      }
+    }
   }
   
-  text {
-    color: pink;
-    z-index: 100;
+  .fa-close {
+    color: @lightcoral;
+    position: absolute;
+    left: 10px;
+    transition: color 0.6s;
+    -webkit-transition: color 0.4s;
+    font-size: 1.2em;
+    
+    &:hover {
+      cursor: pointer;
+      color: @coral;
+    }
   }
   
-  rect {
-    z-index: 0;
+  .question {
+    text-align: left;
+    width: 85%;
+    margin: 30px auto 0;
+    font-weight: 500;
+    font-size: 115%;
+  }
+  
+  .voteDisplay {
+    background: @white;
+    width: 90%;
+    max-width: 360px;
+    margin: 20px auto;
+    border: 1px solid @lightcoral;
+    border-radius: @br;
+    
+    svg {
+      transform: scale(0.8);
+      -webkit-transform: scale(0.8);
+      -ms-transform: scale(0.8);
+      transition: transform 0.6s;
+      -webkit-transition: -webkit-transform 0.6s;
+      
+      @media screen and (min-width: 500px) {
+        transform: scale(0.95);
+        -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+      }
+      
+      @media screen and (min-width: 800px) {
+        margin-top: 10px;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+      }
+    }
+    
+  }
+  
+  .pollVote {
+    display: block;
+    width: 100%;
+  }
+  
+  .opt {
+    background: pink;
+    display: inline-block;
+    width: 100%;
+    padding: 3px;
+    height: 2em;
+    overflow: scroll;
+    border-radius: @br;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+  .opt1 {
+    background: @fog;
+  }
+  .opt2 {
+    background: @lightfog;
+  }
+  .opt3 {
+    background: @coral;
   }
   
 }
