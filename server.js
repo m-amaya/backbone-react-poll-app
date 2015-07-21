@@ -15,7 +15,7 @@ client.connect(function(err, client) {
   } else {
     console.log("Successfully connected to db...");
   }
-}
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
