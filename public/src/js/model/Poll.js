@@ -25,5 +25,5 @@ module.exports = Backbone.Model.extend({
       return "Must enter an option here.";
     }
   },
-  urlRoot: "https://young-spire-5586.herokuapp.com/api/polls"
+  urlRoot: "http://localhost:8000/api/polls"
 });

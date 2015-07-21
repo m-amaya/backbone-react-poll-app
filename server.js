@@ -17,6 +17,7 @@ client.connect(function(err, client) {
   }
 });
 
+// express middleware =================================
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
