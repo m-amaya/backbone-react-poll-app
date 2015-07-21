@@ -34,8 +34,10 @@ Postgres database, configuring and running express app
 
 ##Running the App Locally
 
+If you would like to run the app yourself, you can do the
+following:
+
 1. Download .zip or `git clone` repository.
-2. Add `config.js` file in `app/db` file location.
 3. Run `npm install` to install node modules.
 4. Run `bower install` to install front-end libs.
 5. Run `grunt package` to ensure src files are built.
