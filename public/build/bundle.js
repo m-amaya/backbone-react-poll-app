@@ -14,7 +14,7 @@ var Poll = require('../model/Poll');
 module.exports =
   Backbone.Collection.extend({
     model: Poll,
-    url: 'http://localhost:8000/api/polls'
+    url: 'https://young-spire-5586.herokuapp.com/api/polls'
   });
 
 },{"../model/Poll":4}],3:[function(require,module,exports){
@@ -76,7 +76,7 @@ module.exports = Backbone.Model.extend({
       return "Must enter an option here.";
     }
   },
-  urlRoot: "http://localhost:8000/api/polls"
+  urlRoot: "https://young-spire-5586.herokuapp.com/api/polls"
 });
 
 },{}],5:[function(require,module,exports){
