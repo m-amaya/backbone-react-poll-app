@@ -9,6 +9,14 @@ var db = require('./app/db/config');
 var port = process.env.PORT || 8000;
 var client = db.client();
 
+client.connect(function(err, client) {
+  if(err) {
+    console.log("Oops! Could not connect to db: " + err);
+  } else {
+    console.log("Successfully connected to db...");
+  }
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
