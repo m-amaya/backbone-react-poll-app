@@ -346,4 +346,4 @@ module.exports = React.createClass({displayName: "exports",
   }
 });
 
-},{"./D3ChartComponent.jsx":5}]},{},[2,4,5,6,7,8,9,10,11,12,1]);
+},{"./D3ChartComponent.jsx":5}]},{},[2,3,4,5,6,7,8,9,10,11,12,1]);

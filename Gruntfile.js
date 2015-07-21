@@ -34,12 +34,8 @@ module.exports = function (grunt) {
           debug: true
         },
         src: [
-              'public/src/js/collection/*.js',
-              'public/src/js/model/*.js',
-              'public/src/js/router/*.js',
-              'public/src/js/util/*.js',
-              'public/src/js/view/*.js',
-              'public/src/js/view/*.jsx',
+              'public/src/js/*/*.js',
+              'public/src/js/*/*.jsx',
               'public/src/js/*.js',
               'public/src/js/*.jsx' ],
         dest: 'public/build/bundle.js'
@@ -65,12 +61,8 @@ module.exports = function (grunt) {
       },
       browserify: {
         files: [
-              'public/src/js/collection/*.js',
-              'public/src/js/model/*.js',
-              'public/src/js/router/*.js',
-              'public/src/js/util/*.js',
-              'public/src/js/view/*.js',
-              'public/src/js/view/*.jsx',
+              'public/src/js/*/*.js',
+              'public/src/js/*/*.jsx',
               'public/src/js/*.js',
               'public/src/js/*.jsx' ],
         tasks: ['browserify:dev']
